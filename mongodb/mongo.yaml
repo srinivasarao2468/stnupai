@@ -21,9 +21,15 @@ spec:
         - containerPort: 27017
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          value: mongoadmin
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: username
         - name: MONGO_INITDB_ROOT_PASSWORD
-          value: secret
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: password
 
 ---
 apiVersion: v1
